@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { mockArticles } from "@/data/mockArticles";
 
 const Index = () => {
   return (
@@ -22,26 +23,29 @@ const Index = () => {
   );
 };
 
-const HeroSection = () => (
-  <div className="relative rounded-lg overflow-hidden">
-    <img src="/placeholder.svg" alt="Featured Article" className="w-full h-[400px] object-cover" />
-    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6">
-      <h1 className="text-3xl font-bold mb-2">Featured Article Headline</h1>
-      <p className="text-lg">A brief summary of the featured article goes here, providing key points and context.</p>
+const HeroSection = () => {
+  const featuredArticle = mockArticles[0];
+  return (
+    <div className="relative rounded-lg overflow-hidden">
+      <img src={featuredArticle.image} alt={featuredArticle.title} className="w-full h-[400px] object-cover" />
+      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6">
+        <h1 className="text-3xl font-bold mb-2">{featuredArticle.title}</h1>
+        <p className="text-lg">{featuredArticle.summary}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const TopStories = () => (
   <section className="mb-8">
     <h2 className="text-2xl font-bold mb-4">Top Stories</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {[1, 2, 3, 4].map((item) => (
-        <Card key={item}>
-          <img src="/placeholder.svg" alt={`Story ${item}`} className="w-full h-40 object-cover rounded-t-lg" />
+      {mockArticles.slice(1, 5).map((article) => (
+        <Card key={article.id}>
+          <img src={article.image} alt={article.title} className="w-full h-40 object-cover rounded-t-lg" />
           <CardContent className="p-4">
-            <h3 className="font-semibold mb-2">Top Story Headline {item}</h3>
-            <p className="text-sm text-muted-foreground">Brief summary of the top story...</p>
+            <h3 className="font-semibold mb-2">{article.title}</h3>
+            <p className="text-sm text-muted-foreground">{article.summary}</p>
           </CardContent>
         </Card>
       ))}
@@ -77,10 +81,10 @@ const LatestNews = () => (
   <section className="mb-8">
     <h2 className="text-2xl font-bold mb-4">Latest News</h2>
     <ul className="space-y-4">
-      {[1, 2, 3, 4, 5].map((item) => (
-        <li key={item} className="border-b pb-2">
-          <h3 className="font-semibold">Latest News Headline {item}</h3>
-          <p className="text-sm text-muted-foreground">2 hours ago</p>
+      {mockArticles.map((article) => (
+        <li key={article.id} className="border-b pb-2">
+          <h3 className="font-semibold">{article.title}</h3>
+          <p className="text-sm text-muted-foreground">{article.date}</p>
         </li>
       ))}
     </ul>
