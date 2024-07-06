@@ -3,8 +3,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Home, BarChart2, Briefcase, Cpu, PenTool } from "lucide-react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Layout from "./layouts/navbar"; // Changed to navbar layout
+import Layout from "./layouts/navbar";
 import Index from "./pages/Index.jsx";
+import StockData from "./pages/StockData.jsx";
+
 const queryClient = new QueryClient();
 
 export const navItems = [
@@ -49,6 +51,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
+              <Route path="/markets" element={<StockData />} />
               {/* Add more routes here as needed */}
             </Route>
           </Routes>
