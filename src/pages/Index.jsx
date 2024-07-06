@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { mockArticles } from "../data/mockArticles";
+import { mockArticles } from "@/data/mockArticles";
 
 const Index = () => {
   return (
